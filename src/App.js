@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Success from "./images/icon-success-check.svg";
 
 export default function App() {
   const [firstName, setFirstName] = useState("");
@@ -33,7 +34,7 @@ export default function App() {
     setError(newError);
 
     if (firstName && lastName && email && queryType && message && consent) {
-      setResult("your info has been successfully sent to us");
+      setResult(` Your info has been sent to us`);
     } else if (
       newError.firstName ||
       newError.lastName ||
@@ -48,8 +49,8 @@ export default function App() {
 
   return (
     <div className="App">
+      <Result result={result} />
       <div className="container">
-        <Result result={result} />
         <h1>Contact Us</h1>
         <ContactForm
           handleSubmit={handleSubmit}
@@ -74,6 +75,7 @@ export default function App() {
 }
 
 function ContactForm({
+  error,
   handleSubmit,
   firstName,
   setFirstName,
@@ -93,18 +95,28 @@ function ContactForm({
       <form onSubmit={handleSubmit}>
         <div className="form-name">
           <div>
-            <label>First Name *</label>
-            <input
-              type="text"
-              value={firstName}
-              onChange={(e) => setFirstName(e.target.value)}
-            />
-            <label>Last Name *</label>
-            <input
-              type="text"
-              value={lastName}
-              onChange={(e) => setLastName(e.target.value)}
-            />
+            <div>
+              <label>First Name *</label>
+              <input
+                type="text"
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+              />
+              {error.firstName && (
+                <p className="error">This field is required</p>
+              )}
+            </div>
+            <div>
+              <label>Last Name *</label>
+              <input
+                type="text"
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
+              />
+              {error.lastName && (
+                <p className="error">This field is required</p>
+              )}
+            </div>
           </div>
         </div>
         <div className="form-email">
@@ -114,6 +126,9 @@ function ContactForm({
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
+          {error.email && (
+            <p className="error">Please enter a valid email address</p>
+          )}
         </div>
         <div>
           <label>Query Type *</label>
@@ -139,6 +154,9 @@ function ContactForm({
               Support Request
             </label>
           </div>
+          {error.queryType && (
+            <p className="error">Please select a Query Type</p>
+          )}
         </div>
         <div className="form-message">
           <label>Message *</label>
@@ -146,6 +164,7 @@ function ContactForm({
             value={message}
             onChange={(e) => setMessage(e.target.value)}
           />
+          {error.message && <p className="error">This field is required</p>}
         </div>
         <div className="form-consent">
           <label>
@@ -157,6 +176,11 @@ function ContactForm({
             i consent to being contacted by the team
           </label>
         </div>
+        {error.consent && (
+          <p className="error">
+            To submit this form, please consent to being contacted
+          </p>
+        )}
         <div className="form-submit">
           <button type="submit">Submit</button>
         </div>
@@ -166,5 +190,14 @@ function ContactForm({
 }
 
 function Result({ result }) {
-  return <div>{result}</div>;
+  return (
+    <di>
+      {result && (
+        <div className="result">
+          <img src={Success} alt="pic" />
+          {result}
+        </div>
+      )}
+    </di>
+  );
 }

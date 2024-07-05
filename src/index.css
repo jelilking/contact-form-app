@@ -1,17 +1,204 @@
 :root {
+  --Green-200-lighter: hsl(148, 38%, 91%);
+  --Green-600-medium: hsl(169, 82%, 27%);
+  --Red: hsl(0, 66%, 54%);
+
+  --Yellow: hsl(52, 100%, 52%);
+
+  --White: hsl(0, 0%, 100%);
+  --Grey-500-medium: hsl(186, 15%, 59%);
+  --Grey-900-darker: hsl(187, 24%, 22%);
 }
 
-*,
-*::after,
-*::before {
+/* Basic reset for all elements */
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-body,
-html {
+/* Container for the entire app */
+.App {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  min-height: 100vh;
+  background-color: var(--Green-200-lighter);
+  font-family: Arial, sans-serif;
+}
+
+/* Styling for the form container */
+.container {
+  background: var(--White);
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 500px;
+}
+
+/* Heading style */
+h1 {
+  margin-bottom: 2rem;
+  text-align: left;
+  color: #333;
+}
+
+/* General input and textarea styling */
+input[type="text"],
+input[type="email"] {
+  width: 100%;
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+textarea {
+  width: 100%;
+  padding: 1.5rem;
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Flex container for first and last name inputs */
+.form-name > div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.form-name > div > div {
+  margin-bottom: 0.4rem;
+  width: 50%;
+}
+
+.form-name input[type="text"] {
+  width: 100%;
+}
+
+label {
+  color: var(--Green-600-medium);
+}
+
+/* Name label styling */
+.form-name label {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+/* Radio buttons styling */
+.radio {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  gap: 15px;
+}
+
+.radio label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  border: 1px solid #ccc;
+  padding: 0.5rem;
+  border-radius: 5px;
+  margin-top: 0.5rem;
+  width: 50%;
+}
+
+.radio input[type="radio"] {
+  margin-right: 0.5rem;
+}
+
+/* Consent checkbox styling */
+.form-consent {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.form-consent input[type="checkbox"] {
+  margin-right: 0.5rem;
+}
+
+/* Submit button styling */
+button {
+  display: inline-block;
+  width: 100%;
+  padding: 0.75rem;
+  background-color: var(--Green-600-medium);
+  color: var(--White);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: var(--Green-200-lighter);
+}
+
+/* Error messages styling */
+.error {
+  color: var(--Red);
+  font-size: 0.875rem;
+  margin-top: -0.5rem;
+  margin-bottom: 1rem;
+}
+
+/* Styling for result message */
+.result {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* text-align: center; */
+  color: var(--White);
+  margin-top: 1rem;
+  font-weight: bold;
+  background-color: var(--Green-600-medium);
+  padding: 2rem;
+  margin-bottom: 1rem;
+  border-radius: 1rem;
+  width: 300px;
+}
+
+/* Media Queries for Mobile Devices */
+@media (max-width: 375px) {
+  .container {
+    padding: 1rem;
+  }
+
+  .radio label {
+    width: 100%;
+  }
+
+  .radio {
+    flex-direction: column;
+    align-items: start;
+  }
+
+  .form-name > div {
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .form-name > div > div {
+    width: 100%;
+  }
+
+  button {
+    padding: 0.5rem;
+    font-size: 0.875rem;
+  }
+
+  .result {
+    padding: 1rem;
+    width: 100%;
+  }
 }
