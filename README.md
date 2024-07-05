@@ -27,7 +27,7 @@ The goal of this project was to create a responsive contact form that collects u
 ### Links
 
 - Solution URL: [GitHub Repository](https://github.com/jelilking/contact-form-app)
-- Live Site URL: [Live Demo](https://yourwebsite.com/contact-form-app)
+- Live Site URL: [Live Demo](https://jelilking.github.io/contact-form-app)
 
 ## My process
 
